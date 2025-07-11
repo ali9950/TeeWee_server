@@ -1,14 +1,12 @@
-# main.py
-import os
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List
+import os
 
 app = FastAPI()
 
-# السماح بالوصول من أي مصدر
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -54,7 +52,8 @@ def home(request: Request):
         return JSONResponse(content=None, status_code=200)
     return {"message": "Welcome to TeeWee Server 🎉"}
 
+# Glitch will run "python3 main.py"
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 3000))  # Glitch يستخدم بورت 3000
     uvicorn.run(app, host="0.0.0.0", port=port)
